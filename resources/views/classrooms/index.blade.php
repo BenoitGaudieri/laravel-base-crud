@@ -1,6 +1,15 @@
 @extends('layouts.main')
 
 @section('main-content')
+
+    {{-- if a classroom has been deleted display this alert --}}
+    @if (session("deleted"))
+        <div class="alert alert-success">
+            {{session("deleted")}} successfully deleted
+        </div>
+        
+    @endif
+    
     <h1 class="mb-4">Classrooms Database</h1>
 
     <section class="classrooms">
@@ -26,8 +35,17 @@
                         {{-- se non si passa un valore laravel pensa automaticamente di passare l'id --}}
                         <a class="btn btn-success" href="{{ route("classrooms.show", $classroom) }}">SHOW</a>
                     </td>
-                    <td>UPDATE</td>
-                    <td>DELETE</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ route("classrooms.edit", $classroom) }}">EDIT</a>
+                    </td>
+                    <td>
+                        <form action="{{ route("classrooms.destroy", $classroom->id) }}" method="POST">
+                            @csrf
+                            @method("DELETE")
+
+                            <input class="btn btn-danger" type="submit" value="DELETE">
+                        </form>
+                    </td>
                 </tr>
                     
                 @endforeach
