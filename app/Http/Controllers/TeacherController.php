@@ -38,7 +38,26 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // get data from the request post
+        $data = $request->all();
+
+        // validation
+        // TODO: validation function
+
+        $teacher = new Teacher();
+
+        // fill the model with data
+        $teacher->fill($data);
+
+        // save in db
+        $saved = $teacher->save();
+
+        // redirect to index
+        // TODO: redirect to show
+        if ($saved) {
+
+            return redirect()->route("teachers.index");
+        }
     }
 
     /**
