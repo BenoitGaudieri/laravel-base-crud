@@ -12,39 +12,49 @@
     
     <h1 class="mb-4">Teachers Database</h1>
 
-    <section class="classrooms">
+    <section class="teachers">
         <h2 class="text-primary mb-4">Teacher List</h2>
 
+        
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th class="align-middle">Name</th>
+                    <th class="align-middle">Age</th>
+                    <th class="align-middle">Gender</th>
+                    <th class="align-middle">Class</th>
+                    <th class="align-middle"></th>
+                    <th class="align-middle"></th>
+                    <th class="align-middle">
+                        <a class="btn btn-success align-middle" href="{{route("teachers.create")}}">New Teacher</a>
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($classrooms as $classroom)
+                @foreach ($teachers as $teacher)
                 <tr>
-                    <td>{{$classroom->id}}</td>
-                    <td>{{$classroom->name}}</td>
+                    <td>{{$teacher->name}}</td>
+                    <td>{{$teacher->age}}</td>
+                    <td>{{$teacher->gender}}</td>
+                    <td>{{$teacher->class}}</td>
                     <td>
-                        {{-- <a class="btn btn-success" href="{{ route("classrooms.show", $classroom->id) }}">SHOW</a> --}}
+                        {{-- <a class="btn btn-success" href="{{ route("teachers.show", $teacher->id) }}">SHOW</a> --}}
                         {{-- se non si passa un valore laravel pensa automaticamente di passare l'id --}}
-                        <a class="btn btn-success" href="{{ route("classrooms.show", $classroom) }}">SHOW</a>
+                        {{-- <a class="btn btn-success" href="{{ route("teachers.show", $teacher) }}">SHOW</a> --}}
+                        SHOW
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="{{ route("classrooms.edit", $classroom) }}">EDIT</a>
+                        {{-- <a class="btn btn-primary" href="{{ route("teachers.edit", $teacher) }}">EDIT</a> --}}
+                        EDIT
                     </td>
                     <td>
-                        <form action="{{ route("classrooms.destroy", $classroom->id) }}" method="POST">
+                        {{-- <form action="{{ route("teachers.destroy", $teacher->id) }}" method="POST">
                             @csrf
                             @method("DELETE")
 
                             <input class="btn btn-danger" type="submit" value="DELETE">
-                        </form>
+                        </form> --}}
+                        DELETE
                     </td>
                 </tr>
                     
